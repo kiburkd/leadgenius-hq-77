@@ -42,17 +42,17 @@ const LeadsList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-xl shadow-sm">
+      <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
             placeholder="Search leads..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 border-gray-200 focus:ring-primary"
+            className="pl-9"
           />
         </div>
-        <Button variant="outline" className="flex items-center gap-2 border-gray-200 hover:bg-gray-50">
+        <Button variant="outline" className="flex items-center gap-2">
           <Filter className="h-4 w-4" />
           Filters
         </Button>
