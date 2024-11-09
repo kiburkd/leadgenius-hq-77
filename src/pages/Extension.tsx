@@ -22,10 +22,12 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const Extension = () => {
   const [leadScore, setLeadScore] = useState(85);
   const [notes, setNotes] = useState("");
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleSync = () => {
@@ -48,6 +50,10 @@ const Extension = () => {
     return "text-red-600";
   };
 
+  const handleSectionClick = (section: string) => {
+    setSelectedSection(section);
+  };
+
   return (
     <div className="w-[400px] p-4 bg-gray-50 min-h-screen">
       <div className="flex items-center justify-between mb-6">
@@ -68,7 +74,7 @@ const Extension = () => {
         </TabsList>
 
         <TabsContent value="overview">
-          <Card className="mb-4">
+          <Card className="mb-4 cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleSectionClick("leadScore")}>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg">Lead Score</CardTitle>
             </CardHeader>
@@ -85,7 +91,7 @@ const Extension = () => {
             </CardContent>
           </Card>
 
-          <Card className="mb-4">
+          <Card className="mb-4 cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleSectionClick("companyProfile")}>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg">Company Profile</CardTitle>
             </CardHeader>
@@ -111,7 +117,7 @@ const Extension = () => {
         </TabsContent>
 
         <TabsContent value="insights">
-          <Card className="mb-4">
+          <Card className="mb-4 cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleSectionClick("marketPosition")}>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg">Market Position</CardTitle>
             </CardHeader>
@@ -137,7 +143,7 @@ const Extension = () => {
         </TabsContent>
 
         <TabsContent value="contacts">
-          <Card className="mb-4">
+          <Card className="mb-4 cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleSectionClick("contacts")}>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg">Key Contacts</CardTitle>
             </CardHeader>
@@ -192,6 +198,99 @@ const Extension = () => {
           Share Insights
         </Button>
       </div>
+
+      <Dialog open={!!selectedSection} onOpenChange={() => setSelectedSection(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">
+              {selectedSection === "leadScore" && "Lead Score Details"}
+              {selectedSection === "companyProfile" && "Company Profile Details"}
+              {selectedSection === "marketPosition" && "Market Position Analysis"}
+              {selectedSection === "contacts" && "Contact Information"}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            {selectedSection === "leadScore" && (
+              <div className="space-y-4">
+                <div className={`text-3xl font-bold ${getScoreColor(leadScore)}`}>
+                  {leadScore}%
+                </div>
+                <Progress value={leadScore} className="h-2" />
+                <p className="text-gray-600">
+                  This lead score is calculated based on company size, industry match,
+                  and growth potential. A score above 80% indicates a high-value prospect.
+                </p>
+              </div>
+            )}
+            {selectedSection === "companyProfile" && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Industry</h3>
+                  <p className="text-gray-600">Technology Industry</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Company Size</h3>
+                  <p className="text-gray-600">1000-5000 employees</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Growth Status</h3>
+                  <p className="text-gray-600">High growth</p>
+                </div>
+              </div>
+            )}
+            {selectedSection === "marketPosition" && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Market Position</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Market Leader</Badge>
+                    <Badge variant="outline">Enterprise Focus</Badge>
+                    <Badge variant="outline">Global Presence</Badge>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Competitors</h3>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• Competitor A Inc.</li>
+                    <li>• Competitor B Corp.</li>
+                    <li>• Competitor C Ltd.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+            {selectedSection === "contacts" && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Primary Contact</h3>
+                  <div className="space-y-2 text-gray-600">
+                    <p className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      contact@company.com
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      +1 (555) 123-4567
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold">Social Profiles</h3>
+                  <div className="space-y-2 text-gray-600">
+                    <p className="flex items-center gap-2">
+                      <LinkedinIcon className="h-4 w-4" />
+                      LinkedIn Profile
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Twitter className="h-4 w-4" />
+                      Twitter Profile
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
