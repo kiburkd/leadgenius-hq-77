@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import ProductCard from "@/components/products/ProductCard";
 import AddProductDialog from "@/components/products/AddProductDialog";
+import ProductDetailsDialog from "@/components/products/ProductDetailsDialog";
 
 const Products = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   const products = [
     {
@@ -25,6 +28,11 @@ const Products = () => {
     },
   ];
 
+  const handleProductClick = (product: any) => {
+    setSelectedProduct(product);
+    setIsDetailsDialogOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader />
@@ -34,17 +42,28 @@ const Products = () => {
             <h2 className="text-3xl font-bold text-primary mb-2">Products</h2>
             <p className="text-gray-600">Manage your products and services</p>
           </div>
-          <Button onClick={() => setIsDialogOpen(true)} className="flex items-center gap-2">
+          <Button onClick={() => setIsAddDialogOpen(true)} className="flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Product
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard 
+              key={product.id} 
+              {...product} 
+              onClick={() => handleProductClick(product)}
+            />
           ))}
         </div>
-        <AddProductDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
+        <AddProductDialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen} />
+        {selectedProduct && (
+          <ProductDetailsDialog
+            open={isDetailsDialogOpen}
+            onOpenChange={setIsDetailsDialogOpen}
+            product={selectedProduct}
+          />
+        )}
       </main>
     </div>
   );
