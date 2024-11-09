@@ -4,39 +4,60 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50/50 to-white">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="animate-fade-in">
-          <span className="bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6 inline-block">
-            Trusted by 1000+ companies worldwide
-          </span>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            Empower your digital <br className="hidden md:block" />
-            life with ClientIQ
+    <section className="pt-32 pb-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16 animate-fade-in relative">
+          <div className="absolute top-0 left-1/4 w-12 h-12 bg-purple-100 rounded-full blur-xl opacity-70" />
+          <div className="absolute top-20 right-1/4 w-12 h-12 bg-yellow-100 rounded-full blur-xl opacity-70" />
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900">
+            We Help With Your Company's<br />Business Growth
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Build powerful websites and applications with our intuitive platform. 
-            Save time and boost productivity with AI-powered tools.
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Get precise and accurate data you need to make better business decisions and high growth rate.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="text-lg bg-blue-600 hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg group">
-              <Link to="/dashboard" className="gap-2">
-                Start Free Trial <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="text-lg hover:bg-blue-50 transition-all border-2">
-              <a href="#features">See How It Works</a>
-            </Button>
-          </div>
+          <Button asChild size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black">
+            <Link to="/dashboard" className="gap-2">
+              GET STARTED <ArrowRight className="h-5 w-5" />
+            </Link>
+          </Button>
         </div>
-        <div className="mt-16 animate-fade-in delay-200">
-          <div className="relative rounded-2xl overflow-hidden border bg-white p-4">
-            <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent z-10 h-20 bottom-0"></div>
-            <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
-              alt="Platform Preview"
-              className="rounded-xl shadow-2xl border transform hover:scale-[1.02] transition-all duration-300"
-            />
+
+        <div className="mt-16 animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold">Dashboard</h3>
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
+                  <span className="text-sm">JM</span>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600 mb-1">2034</div>
+                <div className="h-2 bg-yellow-400 rounded-full w-3/4" />
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600 mb-1">234</div>
+                <div className="h-2 bg-purple-400 rounded-full w-1/2" />
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600 mb-1">5420</div>
+                <div className="h-2 bg-blue-400 rounded-full w-4/5" />
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-sm text-gray-600 mb-1">23</div>
+                <div className="h-2 bg-green-400 rounded-full w-1/4" />
+              </div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-6 gap-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-16 bg-white rounded-md" />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

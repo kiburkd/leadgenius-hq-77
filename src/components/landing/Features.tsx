@@ -1,35 +1,25 @@
-import { BarChart2, Globe, Shield, Users, Zap, Sparkles } from "lucide-react";
+import { BarChart2, Globe, Users, Zap } from "lucide-react";
 
 const features = [
   {
-    icon: <BarChart2 className="h-8 w-8 text-blue-600" />,
-    title: "Advanced Analytics",
-    description: "Get deep insights into your performance with our advanced AI algorithms"
+    icon: <Globe className="h-6 w-6 text-gray-900" />,
+    title: "Market Research",
+    description: "Research everything that you need to know about your target market"
   },
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
-    title: "Global Reach",
-    description: "Connect and scale your business across borders effortlessly"
+    icon: <Users className="h-6 w-6 text-gray-900" />,
+    title: "User Experience",
+    description: "Design and optimize the user experience for maximum engagement"
   },
   {
-    icon: <Shield className="h-8 w-8 text-blue-600" />,
-    title: "Enterprise Security",
-    description: "Bank-grade security to protect your data and maintain compliance"
+    icon: <Zap className="h-6 w-6 text-gray-900" />,
+    title: "Digital Marketing",
+    description: "Implement effective digital marketing strategies for growth"
   },
   {
-    icon: <Users className="h-8 w-8 text-blue-600" />,
-    title: "Team Collaboration",
-    description: "Work together seamlessly with built-in collaboration tools"
-  },
-  {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
-    title: "Lightning Fast",
-    description: "Optimized performance for quick loading and real-time updates"
-  },
-  {
-    icon: <Sparkles className="h-8 w-8 text-blue-600" />,
-    title: "AI-Powered Tools",
-    description: "Leverage the power of AI to automate and enhance your workflow"
+    icon: <BarChart2 className="h-6 w-6 text-gray-900" />,
+    title: "SEO Services",
+    description: "Optimize your online presence for better search engine rankings"
   }
 ];
 
@@ -37,22 +27,22 @@ const Features = () => {
   return (
     <section id="features" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <span className="text-blue-600 font-semibold">FEATURES</span>
-          <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Everything You Need to Scale</h2>
-          <p className="text-xl text-gray-600">Powerful tools to help you manage and grow your business</p>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Build a customer-centric<br />marketing strategy
+          </h2>
+          <p className="text-gray-600">
+            Focus on creating meaningful connections with your target audience
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="p-6 rounded-2xl border hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] hover:bg-blue-50/50 group"
-            >
-              <div className="mb-4 p-3 bg-blue-100/50 rounded-xl w-fit group-hover:bg-blue-100 transition-colors">
+            <div key={index} className="text-center">
+              <div className="inline-flex items-center justify-center p-3 bg-gray-50 rounded-xl mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600 text-sm">{feature.description}</p>
             </div>
           ))}
         </div>
