@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Building2, Users, TrendingUp } from "lucide-react";
 import {
   Dialog,
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import ContactInfo from "./ContactInfo";
 
 interface LeadCardProps {
   company: string;
@@ -16,9 +16,21 @@ interface LeadCardProps {
   score: number;
   employees: string;
   growth: string;
+  email?: string;
+  website?: string;
+  linkedin?: string;
 }
 
-const LeadCard = ({ company, industry, score, employees, growth }: LeadCardProps) => {
+const LeadCard = ({ 
+  company, 
+  industry, 
+  score, 
+  employees, 
+  growth,
+  email,
+  website,
+  linkedin 
+}: LeadCardProps) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const getScoreColor = (score: number) => {
@@ -53,6 +65,7 @@ const LeadCard = ({ company, industry, score, employees, growth }: LeadCardProps
               {growth}
             </div>
           </div>
+          <ContactInfo email={email} website={website} linkedin={linkedin} />
         </CardContent>
       </Card>
 
@@ -87,18 +100,8 @@ const LeadCard = ({ company, industry, score, employees, growth }: LeadCardProps
                   <TrendingUp className="h-4 w-4" />
                   Growth Status: {growth}
                 </div>
+                <ContactInfo email={email} website={website} linkedin={linkedin} />
               </div>
-            </div>
-            
-            <Separator />
-            
-            <div className="space-y-2">
-              <h3 className="font-semibold text-gray-700">Industry Analysis</h3>
-              <p className="text-gray-600">
-                Operating in the {industry} sector with {growth.toLowerCase()} trajectory.
-                This company shows strong potential based on their current market position
-                and employee count of {employees}.
-              </p>
             </div>
           </div>
         </DialogContent>

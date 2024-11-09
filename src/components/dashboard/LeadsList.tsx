@@ -14,6 +14,9 @@ const LeadsList = () => {
       score: 85,
       employees: "1000-5000",
       growth: "High Growth",
+      email: "contact@techcorp.com",
+      website: "https://techcorp.com",
+      linkedin: "https://linkedin.com/company/techcorp",
     },
     {
       company: "Global Industries",
@@ -21,6 +24,9 @@ const LeadsList = () => {
       score: 72,
       employees: "5000+",
       growth: "Stable",
+      email: "info@globalind.com",
+      website: "https://globalindustries.com",
+      linkedin: "https://linkedin.com/company/globalind",
     },
     {
       company: "Future Finance",
@@ -28,6 +34,9 @@ const LeadsList = () => {
       score: 91,
       employees: "500-1000",
       growth: "Very High Growth",
+      email: "hello@futurefinance.com",
+      website: "https://futurefinance.com",
+      linkedin: "https://linkedin.com/company/futurefinance",
     },
   ];
 
