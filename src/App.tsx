@@ -8,6 +8,7 @@ import Products from "./pages/Products";
 import Settings from "./pages/Settings";
 import Extension from "./pages/Extension";
 import LandingPage from "./pages/LandingPage";
+import PricingPage from "./pages/PricingPage";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/settings" element={<Settings />} />

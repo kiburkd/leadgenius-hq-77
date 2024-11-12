@@ -1,7 +1,6 @@
 import Navigation from "@/components/landing/Navigation";
 import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
-import Pricing from "@/components/landing/Pricing";
 import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
@@ -14,7 +13,6 @@ const LandingPage = () => {
       <Hero />
       <Features />
       <Testimonials />
-      <Pricing />
       <FAQ />
       <CTA />
       <Footer />

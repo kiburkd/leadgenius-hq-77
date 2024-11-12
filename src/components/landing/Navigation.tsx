@@ -22,9 +22,9 @@ const Navigation = () => {
             <a href="#features" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
               Features
             </a>
-            <a href="#pricing" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
+            <Link to="/pricing" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
               Pricing
-            </a>
+            </Link>
             <Link to="/dashboard" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
               Dashboard
             </Link>
@@ -56,9 +56,9 @@ const Navigation = () => {
               <a href="#features" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
                 Features
               </a>
-              <a href="#pricing" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
+              <Link to="/pricing" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
                 Pricing
-              </a>
+              </Link>
               <Link to="/dashboard" className="text-gray-600 hover:text-accent-500 transition-colors text-sm font-medium">
                 Dashboard
               </Link>

@@ -33,10 +33,10 @@ const Testimonials = () => {
         <div className="text-center mb-16">
           <span className="text-primary-800 font-medium">Testimonials</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mt-2 mb-4">
-            Trusted by industry leaders
+            Trusted by our private beta users
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            See what our customers have to say about their experience with LeadGenius
+            Hear from our exclusive group of early adopters who have been helping shape LeadGenius
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -50,7 +50,12 @@ const Testimonials = () => {
                 </Avatar>
                 <div>
                   <h4 className="font-semibold text-primary-900">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</p>
+                  <p className="text-sm text-gray-600">
+                    {testimonial.role}, {testimonial.company}
+                    <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-100 text-primary-800">
+                      Beta User
+                    </span>
+                  </p>
                 </div>
               </div>
             </Card>
