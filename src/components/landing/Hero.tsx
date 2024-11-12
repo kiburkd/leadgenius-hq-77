@@ -5,11 +5,11 @@ import { ArrowRight, Sparkles, Users, Zap } from "lucide-react";
 const Hero = () => {
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-white to-accent-100/30 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-white to-accent-100/30 -z-10 animate-pulse-slow" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center lg:text-left lg:flex lg:items-center lg:gap-12">
-          <div className="lg:w-1/2 animate-fade-in">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent-100 text-accent-600 text-sm font-medium mb-8">
+          <div className="lg:w-1/2 animate-slide-in">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent-100 text-accent-600 text-sm font-medium mb-8 animate-float">
               <Sparkles className="w-4 h-4 mr-2" />
               Transform your lead generation
             </div>
@@ -46,7 +46,7 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          <div className="hidden lg:block lg:w-1/2 animate-fade-in">
+          <div className="hidden lg:block lg:w-1/2 animate-float">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
               <img

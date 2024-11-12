@@ -41,7 +41,7 @@ const Features = () => {
   return (
     <section id="features" className="py-24 bg-gradient-to-b from-white to-primary-50/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <span className="text-primary-800 font-medium">Features</span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mt-2 mb-4">
             Everything you need to succeed
@@ -54,9 +54,10 @@ const Features = () => {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all duration-300"
+              className="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all duration-300 animate-float"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="inline-flex items-center justify-center p-3 bg-primary-100 rounded-lg mb-4">
+              <div className="inline-flex items-center justify-center p-3 bg-primary-100 rounded-lg mb-4 animate-pulse-slow">
                 <feature.icon className="h-6 w-6 text-primary-800" />
               </div>
               <h3 className="text-lg font-semibold text-primary-900 mb-2">{feature.title}</h3>
