@@ -24,13 +24,17 @@ const MetricsCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-      {metrics.map((metric) => (
-        <Card key={metric.title} className="animate-fade-in">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {metrics.map((metric, index) => (
+        <Card 
+          key={metric.title} 
+          className="animate-fade-in hover:shadow-lg transition-all duration-300"
+          style={{ animationDelay: `${index * 0.1}s` }}
+        >
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <metric.icon className="h-6 w-6 text-primary" />
+              <div className="bg-gradient-to-br from-primary-100 to-accent-100 p-3 rounded-lg">
+                <metric.icon className="h-6 w-6 text-primary-600" />
               </div>
               <div className="flex items-center text-emerald-600 text-sm font-medium">
                 {metric.change}
@@ -39,7 +43,9 @@ const MetricsCards = () => {
             </div>
             <div className="mt-4">
               <h3 className="text-sm font-medium text-gray-500">{metric.title}</h3>
-              <p className="text-2xl font-bold text-primary mt-1">{metric.value}</p>
+              <p className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent mt-1">
+                {metric.value}
+              </p>
             </div>
           </CardContent>
         </Card>

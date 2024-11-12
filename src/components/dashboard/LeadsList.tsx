@@ -41,7 +41,7 @@ const LeadsList = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in">
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -49,17 +49,23 @@ const LeadsList = () => {
             placeholder="Search leads..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9"
+            className="pl-9 bg-white border-gray-200"
           />
         </div>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button variant="outline" className="flex items-center gap-2 border-gray-200">
           <Filter className="h-4 w-4" />
           Filters
         </Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {leads.map((lead) => (
-          <LeadCard key={lead.company} {...lead} />
+        {leads.map((lead, index) => (
+          <div
+            key={lead.company}
+            className="animate-fade-in"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <LeadCard {...lead} />
+          </div>
         ))}
       </div>
     </div>
