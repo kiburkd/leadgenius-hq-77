@@ -1,4 +1,4 @@
-import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import MainHeader from "@/components/shared/MainHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -7,9 +7,9 @@ import { Switch } from "@/components/ui/switch";
 
 const Settings = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <DashboardHeader />
-      <main className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <MainHeader />
+      <main className="container mx-auto px-4 py-12">
         <h2 className="text-3xl font-bold text-primary mb-8">Settings</h2>
         
         <div className="grid gap-8">

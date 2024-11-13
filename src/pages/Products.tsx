@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import MainHeader from "@/components/shared/MainHeader";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import ProductCard from "@/components/products/ProductCard";
@@ -35,7 +35,7 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardHeader />
+      <MainHeader />
       <main className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
