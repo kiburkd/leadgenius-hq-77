@@ -22,9 +22,17 @@ const Analytics = () => {
           <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent mb-3">
             Analytics Dashboard
           </h2>
-          <p className="text-gray-600 text-lg">
-            Comprehensive analytics and insights about your leads and conversions.
+          <p className="text-gray-600 text-lg mb-4">
+            Track your lead generation performance and conversion metrics in real-time. Make data-driven decisions to optimize your lead generation strategy.
           </p>
+          <div className="flex gap-4 mb-8">
+            <Button asChild variant="outline">
+              <Link to="/analytics/export">Export Reports</Link>
+            </Button>
+            <Button asChild>
+              <Link to="/analytics/settings">Configure Analytics</Link>
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -75,6 +83,47 @@ const Analytics = () => {
             </Link>
           </CardContent>
         </Card>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-4">Top Converting Industries</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between items-center">
+                  <span>Technology</span>
+                  <span className="font-semibold text-emerald-600">78%</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span>Healthcare</span>
+                  <span className="font-semibold text-emerald-600">72%</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span>Finance</span>
+                  <span className="font-semibold text-emerald-600">65%</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-4">Lead Source Distribution</h3>
+              <ul className="space-y-3">
+                <li className="flex justify-between items-center">
+                  <span>Website</span>
+                  <span className="font-semibold text-primary-600">45%</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span>Social Media</span>
+                  <span className="font-semibold text-primary-600">30%</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span>Referrals</span>
+                  <span className="font-semibold text-primary-600">25%</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </main>
     </div>
   );
