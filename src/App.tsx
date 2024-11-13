@@ -9,6 +9,9 @@ import Settings from "./pages/Settings";
 import Extension from "./pages/Extension";
 import LandingPage from "./pages/LandingPage";
 import PricingPage from "./pages/PricingPage";
+import LeadActivity from "./pages/LeadActivity";
+import Analytics from "./pages/Analytics";
+import Resources from "./pages/Resources";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/extension" element={<Extension />} />
+          <Route path="/lead-activity/*" element={<LeadActivity />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/resources/*" element={<Resources />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

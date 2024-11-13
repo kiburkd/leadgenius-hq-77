@@ -5,14 +5,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const chartData = [
-    { name: 'Jan', value: 400 },
-    { name: 'Feb', value: 300 },
-    { name: 'Mar', value: 600 },
-    { name: 'Apr', value: 800 },
-    { name: 'May', value: 700 },
+  const leadTrendsData = [
+    { name: 'Jan', leads: 400, qualified: 300 },
+    { name: 'Feb', leads: 300, qualified: 250 },
+    { name: 'Mar', leads: 600, qualified: 450 },
+    { name: 'Apr', leads: 800, qualified: 600 },
+    { name: 'May', leads: 700, qualified: 550 },
   ];
 
   return (
@@ -30,19 +31,27 @@ const Dashboard = () => {
 
         <MetricsCards />
 
-        {/* Growth Trends Section */}
+        {/* Lead Generation Trends */}
         <div className="mt-16 mb-12 animate-fade-in">
-          <h3 className="text-2xl font-bold text-primary-900 mb-6">Growth Trends</h3>
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-2xl font-bold text-primary-900">Lead Generation Trends</h3>
+            <Link to="/analytics">
+              <Button variant="outline" className="flex items-center gap-2">
+                View Full Analytics <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
           <Card>
             <CardContent className="p-6">
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={chartData}>
+                  <LineChart data={leadTrendsData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="value" stroke="#6366f1" strokeWidth={2} />
+                    <Line type="monotone" dataKey="leads" stroke="#6366f1" strokeWidth={2} name="Total Leads" />
+                    <Line type="monotone" dataKey="qualified" stroke="#10b981" strokeWidth={2} name="Qualified Leads" />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -50,83 +59,96 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Recent Activity */}
+        {/* Recent Lead Activity */}
         <div className="mb-12 animate-fade-in">
-          <h3 className="text-2xl font-bold text-primary-900 mb-6">Recent Activity</h3>
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-2xl font-bold text-primary-900">Recent Lead Activity</h3>
+            <Link to="/lead-activity">
+              <Button variant="outline" className="flex items-center gap-2">
+                View All Activity <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                  alt="Analytics Dashboard" 
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h4 className="text-lg font-semibold mb-2">Enhanced Analytics</h4>
+                <h4 className="text-lg font-semibold mb-2">New Lead Qualifications</h4>
                 <p className="text-gray-600 mb-4">
-                  Track your lead generation performance with our new analytics dashboard.
+                  5 new leads qualified in the last 24 hours
                 </p>
-                <Button variant="outline" className="w-full">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/lead-activity/qualifications">
+                  <Button variant="outline" className="w-full">
+                    View Qualifications <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-6">
-                <img 
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" 
-                  alt="Integration Features" 
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h4 className="text-lg font-semibold mb-2">New Integrations</h4>
+                <h4 className="text-lg font-semibold mb-2">Lead Score Updates</h4>
                 <p className="text-gray-600 mb-4">
-                  Connect with your favorite tools and streamline your workflow.
+                  10 lead scores updated based on recent activities
                 </p>
-                <Button variant="outline" className="w-full">
-                  Explore Integrations <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/lead-activity/scores">
+                  <Button variant="outline" className="w-full">
+                    View Score Updates <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Lead Management Resources */}
+        <div className="mb-8 mt-16 animate-fade-in">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-2xl font-bold text-primary-900">Lead Management Resources</h3>
+            <Link to="/resources">
+              <Button variant="outline" className="flex items-center gap-2">
+                View All Resources <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card>
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold mb-2">Lead Scoring Guide</h4>
+                <p className="text-gray-600 mb-4">Learn how our lead scoring system works and how to interpret scores.</p>
+                <Link to="/resources/lead-scoring">
+                  <Button variant="link" className="px-0">
+                    Read Guide <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold mb-2">Qualification Criteria</h4>
+                <p className="text-gray-600 mb-4">Understand the criteria used to qualify leads in your pipeline.</p>
+                <Link to="/resources/qualification-criteria">
+                  <Button variant="link" className="px-0">
+                    View Criteria <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold mb-2">Lead Analytics</h4>
+                <p className="text-gray-600 mb-4">Deep dive into your lead generation and conversion metrics.</p>
+                <Link to="/resources/analytics-guide">
+                  <Button variant="link" className="px-0">
+                    Explore Analytics <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
         </div>
 
         <div className="mb-8 mt-16 animate-fade-in">
-          <h3 className="text-2xl font-bold text-primary-900 mb-3">Recent Leads</h3>
-          <p className="text-gray-600">View and manage your latest leads.</p>
-        </div>
-        <LeadsList />
-
-        {/* Resources Section */}
-        <div className="mt-16 mb-12 animate-fade-in">
-          <h3 className="text-2xl font-bold text-primary-900 mb-6">Resources & Tips</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <CardContent className="p-6">
-                <h4 className="text-lg font-semibold mb-2">Lead Generation Guide</h4>
-                <p className="text-gray-600 mb-4">Learn the best practices for generating high-quality leads.</p>
-                <Button variant="link" className="px-0">
-                  Read More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h4 className="text-lg font-semibold mb-2">Webinar Recordings</h4>
-                <p className="text-gray-600 mb-4">Watch our latest webinars on lead qualification strategies.</p>
-                <Button variant="link" className="px-0">
-                  Watch Now <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h4 className="text-lg font-semibold mb-2">Case Studies</h4>
-                <p className="text-gray-600 mb-4">Discover how other companies achieved success with our platform.</p>
-                <Button variant="link" className="px-0">
-                  View Cases <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          <h3 className="text-2xl font-bold text-primary-900 mb-6">Recent Leads</h3>
+          <LeadsList />
         </div>
       </main>
     </div>
