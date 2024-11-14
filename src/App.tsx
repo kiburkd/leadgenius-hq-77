@@ -12,6 +12,7 @@ import PricingPage from "./pages/PricingPage";
 import LeadActivity from "./pages/LeadActivity";
 import Analytics from "./pages/Analytics";
 import Resources from "./pages/Resources";
+import SignIn from "./pages/SignIn";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/sign-in" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/settings" element={<Settings />} />

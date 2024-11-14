@@ -15,12 +15,12 @@ const CTA = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-white text-primary-900 hover:bg-primary-50">
-              <Link to="/dashboard" className="gap-2">
-                Start Free Trial <ArrowRight className="h-5 w-5" />
+              <Link to="/sign-in" className="gap-2">
+                Get Started <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-primary-800">
-              <Link to="#features">Schedule Demo</Link>
+              <Link to="/pricing">View Pricing</Link>
             </Button>
           </div>
         </div>
