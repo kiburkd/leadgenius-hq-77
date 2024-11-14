@@ -1,7 +1,15 @@
-import { Bell, Settings, Menu, Sparkles } from "lucide-react";
+import { Bell, Settings, Menu, Sparkles, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const MainHeader = () => {
   const location = useLocation();
@@ -12,6 +20,27 @@ const MainHeader = () => {
   };
 
   const isLoggedIn = !["/", "/pricing", "/sign-in", "/sign-up", "/forgot-password"].includes(location.pathname);
+
+  const salesTools = [
+    { path: "/lead-scoring", label: "Lead Scoring" },
+    { path: "/pipeline", label: "Pipeline" },
+    { path: "/tasks", label: "Tasks" },
+    { path: "/lead-enrichment", label: "Lead Enrichment" },
+  ];
+
+  const insights = [
+    { path: "/engagement-history", label: "Engagement History" },
+    { path: "/analytics", label: "Analytics" },
+    { path: "/reports", label: "Reports" },
+    { path: "/leaderboard", label: "Leaderboard" },
+  ];
+
+  const resources = [
+    { path: "/content-library", label: "Content Library" },
+    { path: "/email-templates", label: "Email Templates" },
+    { path: "/documents", label: "Documents" },
+    { path: "/resources", label: "Resources" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
@@ -38,15 +67,51 @@ const MainHeader = () => {
                   <Link to="/dashboard" className={`${isActive("/dashboard")} hover:text-accent-500 transition-colors font-medium`}>
                     Dashboard
                   </Link>
-                  <Link to="/products" className={`${isActive("/products")} hover:text-accent-500 transition-colors font-medium`}>
-                    Products
-                  </Link>
-                  <Link to="/analytics" className={`${isActive("/analytics")} hover:text-accent-500 transition-colors font-medium`}>
-                    Analytics
-                  </Link>
-                  <Link to="/resources" className={`${isActive("/resources")} hover:text-accent-500 transition-colors font-medium`}>
-                    Resources
-                  </Link>
+                  
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="hover:text-accent-500 transition-colors font-medium">
+                      Sales Tools
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {salesTools.map((tool) => (
+                        <DropdownMenuItem key={tool.path}>
+                          <Link to={tool.path} className="w-full">
+                            {tool.label}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="hover:text-accent-500 transition-colors font-medium">
+                      Insights
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {insights.map((insight) => (
+                        <DropdownMenuItem key={insight.path}>
+                          <Link to={insight.path} className="w-full">
+                            {insight.label}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="hover:text-accent-500 transition-colors font-medium">
+                      Resources
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {resources.map((resource) => (
+                        <DropdownMenuItem key={resource.path}>
+                          <Link to={resource.path} className="w-full">
+                            {resource.label}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </>
               )}
             </nav>
@@ -65,6 +130,9 @@ const MainHeader = () => {
                 <Button variant="ghost" size="icon" className="relative">
                   <Bell className="h-5 w-5 text-gray-600" />
                   <span className="absolute top-0 right-0 h-2 w-2 bg-accent-500 rounded-full" />
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <MessageSquare className="h-5 w-5 text-gray-600" />
                 </Button>
                 <Link to="/settings">
                   <Button variant="ghost" size="icon">
@@ -110,15 +178,15 @@ const MainHeader = () => {
                 <Link to="/dashboard" className={`block ${isActive("/dashboard")} hover:text-accent-500 transition-colors font-medium`}>
                   Dashboard
                 </Link>
-                <Link to="/products" className={`block ${isActive("/products")} hover:text-accent-500 transition-colors font-medium`}>
-                  Products
-                </Link>
-                <Link to="/analytics" className={`block ${isActive("/analytics")} hover:text-accent-500 transition-colors font-medium`}>
-                  Analytics
-                </Link>
-                <Link to="/resources" className={`block ${isActive("/resources")} hover:text-accent-500 transition-colors font-medium`}>
-                  Resources
-                </Link>
+                {[...salesTools, ...insights, ...resources].map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`block ${isActive(item.path)} hover:text-accent-500 transition-colors font-medium`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </>
             )}
           </div>
