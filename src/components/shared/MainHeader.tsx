@@ -11,19 +11,17 @@ const MainHeader = () => {
     return location.pathname === path ? "text-accent-500" : "text-gray-600";
   };
 
-  const isLoggedIn = location.pathname !== "/" && location.pathname !== "/pricing";
+  const isLoggedIn = !["/", "/pricing", "/sign-in", "/sign-up", "/forgot-password"].includes(location.pathname);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo and name on the left */}
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-accent-500" />
             LeadGenius
           </Link>
 
-          {/* All other elements grouped on the right */}
           <div className="flex items-center space-x-6">
             <nav className="hidden md:flex items-center space-x-6">
               {!isLoggedIn ? (
@@ -40,8 +38,8 @@ const MainHeader = () => {
                   <Link to="/dashboard" className={`${isActive("/dashboard")} hover:text-accent-500 transition-colors font-medium`}>
                     Dashboard
                   </Link>
-                  <Link to="/lead-activity" className={`${isActive("/lead-activity")} hover:text-accent-500 transition-colors font-medium`}>
-                    Lead Activity
+                  <Link to="/products" className={`${isActive("/products")} hover:text-accent-500 transition-colors font-medium`}>
+                    Products
                   </Link>
                   <Link to="/analytics" className={`${isActive("/analytics")} hover:text-accent-500 transition-colors font-medium`}>
                     Analytics
@@ -56,10 +54,10 @@ const MainHeader = () => {
             {!isLoggedIn ? (
               <div className="hidden md:flex items-center space-x-4">
                 <Button asChild variant="outline" className="border-accent-200 text-accent-700 hover:bg-accent-50">
-                  <Link to="/dashboard">Sign In</Link>
+                  <Link to="/sign-in">Sign In</Link>
                 </Button>
                 <Button asChild className="bg-accent-500 hover:bg-accent-600">
-                  <Link to="/dashboard">Get Started</Link>
+                  <Link to="/sign-up">Get Started</Link>
                 </Button>
               </div>
             ) : (
@@ -101,10 +99,10 @@ const MainHeader = () => {
                   Pricing
                 </Link>
                 <Button asChild variant="outline" className="w-full border-accent-200 text-accent-700 hover:bg-accent-50">
-                  <Link to="/dashboard">Sign In</Link>
+                  <Link to="/sign-in">Sign In</Link>
                 </Button>
                 <Button asChild className="w-full bg-accent-500 hover:bg-accent-600">
-                  <Link to="/dashboard">Get Started</Link>
+                  <Link to="/sign-up">Get Started</Link>
                 </Button>
               </>
             ) : (
@@ -112,8 +110,8 @@ const MainHeader = () => {
                 <Link to="/dashboard" className={`block ${isActive("/dashboard")} hover:text-accent-500 transition-colors font-medium`}>
                   Dashboard
                 </Link>
-                <Link to="/lead-activity" className={`block ${isActive("/lead-activity")} hover:text-accent-500 transition-colors font-medium`}>
-                  Lead Activity
+                <Link to="/products" className={`block ${isActive("/products")} hover:text-accent-500 transition-colors font-medium`}>
+                  Products
                 </Link>
                 <Link to="/analytics" className={`block ${isActive("/analytics")} hover:text-accent-500 transition-colors font-medium`}>
                   Analytics

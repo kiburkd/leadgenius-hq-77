@@ -18,29 +18,46 @@ import ForgotPassword from "./pages/ForgotPassword";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/extension" element={<Extension />} />
-          <Route path="/lead-activity/*" element={<LeadActivity />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/resources/*" element={<Resources />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Simple auth check - in a real app, this would be more sophisticated
+  const isAuthenticated = () => {
+    return localStorage.getItem("isAuthenticated") === "true";
+  };
+
+  const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+    return isAuthenticated() ? <>{children}</> : <Navigate to="/sign-in" />;
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+
+            {/* Protected routes */}
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />
+            <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+            <Route path="/extension" element={<PrivateRoute><Extension /></PrivateRoute>} />
+            <Route path="/lead-activity/*" element={<PrivateRoute><LeadActivity /></PrivateRoute>} />
+            <Route path="/analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
+            <Route path="/resources/*" element={<PrivateRoute><Resources /></PrivateRoute>} />
+
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
