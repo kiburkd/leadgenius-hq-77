@@ -2,22 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
-const SignIn = () => {
+const ForgotPassword = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Success!",
-      description: "You have been signed in successfully.",
+      title: "Reset link sent!",
+      description: "Check your email for instructions to reset your password.",
     });
-    navigate("/dashboard");
-    // In a real application, this would handle authentication
+    // In a real application, this would handle password reset
   };
 
   return (
@@ -30,9 +28,9 @@ const SignIn = () => {
               LeadGenius
             </Link>
           </div>
-          <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
+          <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
           <CardDescription>
-            Sign in to your account to continue
+            Enter your email and we'll send you instructions to reset your password
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -41,22 +39,12 @@ const SignIn = () => {
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" placeholder="name@example.com" required />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required />
-            </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full">Sign In</Button>
+            <Button type="submit" className="w-full">Send Reset Link</Button>
             <div className="text-sm text-center space-y-2">
-              <p className="text-gray-500">
-                Don't have an account?{" "}
-                <Link to="/sign-up" className="text-primary-600 hover:underline">
-                  Sign up
-                </Link>
-              </p>
-              <Link to="/forgot-password" className="text-primary-600 hover:underline block">
-                Forgot your password?
+              <Link to="/sign-in" className="text-primary-600 hover:underline block">
+                Back to Sign In
               </Link>
             </div>
           </CardFooter>
@@ -66,4 +54,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

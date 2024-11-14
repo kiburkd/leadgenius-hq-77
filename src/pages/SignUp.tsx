@@ -2,22 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
-const SignIn = () => {
+const SignUp = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Success!",
-      description: "You have been signed in successfully.",
+      title: "Account created!",
+      description: "Please check your email to verify your account.",
     });
-    navigate("/dashboard");
-    // In a real application, this would handle authentication
+    // In a real application, this would handle user registration
   };
 
   return (
@@ -30,13 +28,17 @@ const SignIn = () => {
               LeadGenius
             </Link>
           </div>
-          <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
+          <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
           <CardDescription>
-            Sign in to your account to continue
+            Enter your details to get started
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input id="name" type="text" placeholder="John Doe" required />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" placeholder="name@example.com" required />
@@ -45,20 +47,19 @@ const SignIn = () => {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" required />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Input id="confirm-password" type="password" required />
+            </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full">Sign In</Button>
-            <div className="text-sm text-center space-y-2">
-              <p className="text-gray-500">
-                Don't have an account?{" "}
-                <Link to="/sign-up" className="text-primary-600 hover:underline">
-                  Sign up
-                </Link>
-              </p>
-              <Link to="/forgot-password" className="text-primary-600 hover:underline block">
-                Forgot your password?
+            <Button type="submit" className="w-full">Create Account</Button>
+            <p className="text-sm text-center text-gray-500">
+              Already have an account?{" "}
+              <Link to="/sign-in" className="text-primary-600 hover:underline">
+                Sign in
               </Link>
-            </div>
+            </p>
           </CardFooter>
         </form>
       </Card>
@@ -66,4 +67,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
