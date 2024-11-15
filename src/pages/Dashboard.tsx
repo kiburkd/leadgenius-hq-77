@@ -1,11 +1,11 @@
-import MainHeader from "@/components/shared/MainHeader";
+import { Plus, ArrowRight, Bell, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import Header from "@/components/dashboard/Header";
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import LeadsList from "@/components/dashboard/LeadsList";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Plus, Bell, Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const leadTrendsData = [
@@ -33,7 +33,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <MainHeader />
+      <Header />
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
@@ -73,8 +73,20 @@ const Dashboard = () => {
                       <XAxis dataKey="name" />
                       <YAxis />
                       <Tooltip />
-                      <Line type="monotone" dataKey="leads" stroke="#6366f1" strokeWidth={2} name="Total Leads" />
-                      <Line type="monotone" dataKey="qualified" stroke="#10b981" strokeWidth={2} name="Qualified Leads" />
+                      <Line 
+                        type="monotone" 
+                        dataKey="leads" 
+                        stroke="#6366f1" 
+                        strokeWidth={2} 
+                        name="Total Leads" 
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="qualified" 
+                        stroke="#10b981" 
+                        strokeWidth={2} 
+                        name="Qualified Leads" 
+                      />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -98,7 +110,10 @@ const Dashboard = () => {
                         dataKey="value"
                       >
                         {leadSourceData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell 
+                            key={`cell-${index}`} 
+                            fill={COLORS[index % COLORS.length]} 
+                          />
                         ))}
                       </Pie>
                       <Tooltip />
@@ -117,7 +132,10 @@ const Dashboard = () => {
               </div>
               <div className="space-y-4">
                 {upcomingTasks.map((task) => (
-                  <div key={task.title} className="p-3 bg-gray-50 rounded-lg">
+                  <div 
+                    key={task.title} 
+                    className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
                     <h3 className="font-medium text-gray-900">{task.title}</h3>
                     <p className="text-sm text-gray-500 mt-1">{task.due}</p>
                   </div>
