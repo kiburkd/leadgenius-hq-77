@@ -2,7 +2,7 @@ import MainHeader from "@/components/shared/MainHeader";
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import LeadsList from "@/components/dashboard/LeadsList";
 import { Card, CardContent } from "@/components/ui/card";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Plus, Bell, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -15,6 +15,15 @@ const Dashboard = () => {
     { name: 'Apr', leads: 800, qualified: 600 },
     { name: 'May', leads: 700, qualified: 550 },
   ];
+
+  const leadSourceData = [
+    { name: 'Website', value: 400 },
+    { name: 'Social', value: 300 },
+    { name: 'Referral', value: 200 },
+    { name: 'Direct', value: 100 },
+  ];
+
+  const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444'];
 
   const upcomingTasks = [
     { title: "Follow up with TechCorp", due: "Today, 2:00 PM" },
@@ -67,6 +76,33 @@ const Dashboard = () => {
                       <Line type="monotone" dataKey="leads" stroke="#6366f1" strokeWidth={2} name="Total Leads" />
                       <Line type="monotone" dataKey="qualified" stroke="#10b981" strokeWidth={2} name="Qualified Leads" />
                     </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="mt-6">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-semibold mb-6">Lead Sources</h2>
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={leadSourceData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        outerRadius={100}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {leadSourceData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
                   </ResponsiveContainer>
                 </div>
               </CardContent>
